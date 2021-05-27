@@ -17,7 +17,7 @@ public class Model {
 	public Model(){
 		listeForme = new ArrayList<Shape>();
 		}
-	public void createRectangle(float x, float y, Color c) {
+	public void createRectangle(double x, double y, Color c) {
 		Rectangle r = new Rectangle(x,y,100,150);
 		r.setFill(c);
 		r.setStroke(Color.BLACK);
@@ -35,16 +35,91 @@ public class Model {
 		listeForme.add(e);
 	}
 	
-	public void createLine(float x1, float y1, float x2, float y2, Color c) {
+	public void createLine(double x1, double y1, double x2, double y2, Color c) {
 		Line l = new Line(x1,y1,x2,y2);
 		l.setFill(c);
+		l.setStrokeWidth(3);
+		l.setStroke(c);
 		listeForme.add(l);
 	}
 	public ArrayList<Shape> getListeForme() {
 		return listeForme;
 	}
 	
+	public void setColor(Shape f,Color c) {
+		int index = listeForme.indexOf(f);
+		f.setFill(c);
+		listeForme.set(index, f);
+		
+	}
 	
+	public void setContour(Shape f) {
+		//Permet en cas de superposition de selectionner la forme le plus en hauteur
+		for (Shape e : listeForme) {
+			setContourBase(e);
+			}
+		int index = listeForme.indexOf(f);
+		f.setStroke(Color.GREEN);
+		f.setStrokeWidth(5);
+		listeForme.set(index, f);
+		
+		
+	}
+	
+	public void setContourBase(Shape f) {
+		int index = listeForme.indexOf(f);
+		f.setStroke(Color.BLACK);
+		f.setStrokeWidth(2);
+		listeForme.set(index, f);
+		
+	}
+	
+	public void move(Shape f, double xNew, double yNew) {
+		int index = listeForme.indexOf(f);
+		
+		if(f instanceof Rectangle) {
+			((Rectangle) f).setX(xNew);
+			((Rectangle) f).setY(yNew);
+		}
+		
+		if(f instanceof Ellipse) {
+			((Ellipse) f).setCenterX(xNew);
+			((Ellipse) f).setCenterY(yNew);
+		}
+		
+		if(f instanceof Line) {
+			((Line) f).setStartX(xNew);
+			((Line) f).setStartY(yNew);
+
+		}
+		
+		
+		f.setTranslateY(yNew);
+		listeForme.set(index, f);
+	}
+	
+	public void delete(Shape f) {
+		listeForme.remove(f);
+	}
+	
+	public void clone(Shape f) {
+		
+		if(f instanceof Rectangle) {
+			createRectangle(((Rectangle) f).getX()+20, ((Rectangle) f).getY()+20, (Color) f.getFill());
+			}
+		
+		if(f instanceof Ellipse) {
+			createEllipse(((Ellipse) f).getCenterX()+20,((Ellipse) f).getCenterY()+20,  (Color) f.getFill());
+			}
+		
+		if(f instanceof Line) {
+			double x = ((Line) f).getStartX()+20;
+			double y = ((Line) f).getStartY()+20;
+			createLine(x,y,x+100,y+100,(Color) f.getFill());
+
+		}
+		
+	}
 }
 
 

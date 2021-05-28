@@ -128,6 +128,7 @@ public class View
             			// on définie le contour accentue
             			controlleur.setContour(f);
             			
+            		
             			btnDelete.setOnAction(supr -> {
             				controlleur.delete(f);
             				 MAJ();
@@ -140,9 +141,12 @@ public class View
             				
             				}
             			}
-            		
-         	
-            	}
+            		}
+            // Quand on est plus sur la sélection on redesactive les boutons 
+            if (btnSelect.isSelected() == false) {
+            	btnDelete.setDisable(true);
+        		btnClone.setDisable(true);
+            }
             // ON met à jours la vue 
             MAJ();
             
@@ -165,10 +169,11 @@ public class View
 	             
 	             // Si le bouton select est sélectionner 
 	             if(btnSelect.isSelected()) {
+	            	 Boolean selected = false;
 	            	 for (Shape f : listForme) {
 	            		 //On regarde quelle forme est sélectionné 
-	            		 if (f.contains(X,Y)) {
-	            			 
+	            		 if (f.contains(X,Y) && selected == false) {
+	            			 selected = true;
 	            			// On redéfini le couleur choisi 
 	             			controlleur.setColor(f, color);
 	             			
@@ -184,16 +189,14 @@ public class View
 	            	        {
 	            	        	double xNew = deplace.getSceneX();
 	            	        	double yNew = deplace.getSceneY();
-	            	        	controlleur.move(f, xNew, yNew);
-	            	        	System.out.println("getX : " + deplace.getX());
-	            	        	System.out.println("getScdeneX : " + deplace.getSceneX());
+
 	            	        });*/
 	             			
 	            			 
 	            		 }
 	            		 
 	            	 }
-	            	
+	            	selected = false;
 	             }
 	             MAJ();
 	        });

@@ -87,6 +87,7 @@ public class Model {
 		
 		if(f instanceof Rectangle) {
 			
+			// Autre methode
 			/*double x  = ((Rectangle) f).getX();
 			double y =  ((Rectangle) f).getY();
 			double deltaX = xNew + x;

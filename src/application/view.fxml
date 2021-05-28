@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.View">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
    <children>
       <AnchorPane fx:id="ZoneDessin" layoutX="190.0" prefHeight="418.0" prefWidth="410.0" style="-fx-background-color: gainsboro;" />
       <HBox prefHeight="77.0" prefWidth="190.0" style="-fx-background-color: silver;">

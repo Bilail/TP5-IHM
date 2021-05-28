@@ -1,4 +1,4 @@
-package application;
+package View;
 
 import java.awt.Paint;
 import java.awt.event.MouseEvent;
@@ -92,11 +92,11 @@ public class View
             
           // Si on a selectionne le bouton ellipse
             if (btnEllipse.isSelected() == true) {
-            	controlleur.ajoutEllipse(x,y,color);
+            	controlleur.ajoutEllipse(x,y,color);  
             	}
             
          // Si on a selectionne le bouton Line
-            if (btnLine.isSelected() == true) {;
+            if (btnLine.isSelected() == true) {
             	controlleur.ajoutLine(x,y,x+100,y+100,color);
             	}
             

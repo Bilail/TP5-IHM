@@ -17,15 +17,15 @@ public class Controlleur {
 		model = new Model();
 	}
 	
-	public void ajoutRectangle(float x, float y, Color c) {
+	public void ajoutRectangle(double x, double y, Color c) {
 		model.createRectangle(x,y,c);
 	}
 	
-	public void ajoutEllipse(float x, float y, Color color) {
+	public void ajoutEllipse(double x, double y, Color color) {
 		model.createEllipse(x,y,color);
 	}
 	
-	public void ajoutLine(float x1, float y1, float x2, float y2, Color c) {
+	public void ajoutLine(double x1, double y1, double x2, double y2, Color c) {
 		model.createLine(x1,y1,x2,y2,c);
 	}
 	

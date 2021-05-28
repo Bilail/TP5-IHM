@@ -81,8 +81,8 @@ public class View
 		ZoneDessin.setOnMouseClicked(event -> {
 			
 			//On récupère les coordonnées de la souris 
-            float x = (float) event.getX();
-            float y = (float) event.getY(); 
+            double x = event.getX();
+            double y = event.getY(); 
             
             ArrayList<Shape> listForme = controlleur.obtenirForme();
             
@@ -116,6 +116,8 @@ public class View
             	}
             	for (Shape f : listForme ) {
             		if (f.contains(x,y)) {
+            			
+            			
             			// On réactive les boutons 
                     	btnDelete.setDisable(false);
                 		btnClone.setDisable(false);
@@ -127,13 +129,13 @@ public class View
             			controlleur.setContour(f);
             			
             			btnDelete.setOnAction(supr -> {
-            				System.out.println("supprimer de " + f);
             				controlleur.delete(f);
+            				 MAJ();
             			});
             			
             			btnClone.setOnAction(add -> {
-            				System.out.println("Clone de " + f);
             				controlleur.clone(f);
+            				 MAJ();
             					});
             				
             				}
@@ -141,9 +143,6 @@ public class View
             		
          	
             	}
-            	
-            	
-            
             // ON met à jours la vue 
             MAJ();
             
@@ -176,14 +175,26 @@ public class View
 	             			// on définie le contour accentue
 	             			controlleur.setContour(f);
 	             			
-	             			//on bouge la forme 
+	             			//on bouge la forme
+	             			
 	             			controlleur.move(f, X, Y);
+	             			
+	             			/*f.setOnMouseDragged(deplace ->
+	            	        {
+	            	        	double xNew = deplace.getSceneX();
+	            	        	double yNew = deplace.getSceneY();
+	            	        	controlleur.move(f, xNew, yNew);
+	            	        	System.out.println("getX : " + deplace.getX());
+	            	        	System.out.println("getScdeneX : " + deplace.getSceneX());
+	            	        });*/
+	             			
 	            			 
 	            		 }
+	            		 
 	            	 }
-	            	 
+	            	
 	             }
-	             
+	             MAJ();
 	        });
 		
 		

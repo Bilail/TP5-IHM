@@ -78,11 +78,26 @@ public class Model {
 		int index = listeForme.indexOf(f);
 		
 		if(f instanceof Rectangle) {
+			/*double x  = ((Rectangle) f).getX();
+			double y =  ((Rectangle) f).getY();
+			double deltaX = xNew + x;
+			double deltaY = yNew + y;
+			((Rectangle) f).setTranslateX(deltaX);
+			((Rectangle) f).setTranslateY(deltaY);*/
+			
 			((Rectangle) f).setX(xNew);
 			((Rectangle) f).setY(yNew);
 		}
 		
 		if(f instanceof Ellipse) {
+			
+			/*double x  = ((Ellipse) f).getCenterX();
+			double y =  ((Ellipse) f).getCenterY();
+			double deltaX = xNew - x;
+			double deltaY = yNew - y;
+			((Ellipse) f).setTranslateX(deltaX);
+			((Ellipse) f).setTranslateY(deltaY);*/
+			
 			((Ellipse) f).setCenterX(xNew);
 			((Ellipse) f).setCenterY(yNew);
 		}
@@ -92,9 +107,7 @@ public class Model {
 			((Line) f).setStartY(yNew);
 
 		}
-		
-		
-		f.setTranslateY(yNew);
+	
 		listeForme.set(index, f);
 	}
 	

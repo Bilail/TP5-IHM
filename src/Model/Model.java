@@ -67,9 +67,17 @@ public class Model {
 	}
 	
 	public void setContourBase(Shape f) {
+		
 		int index = listeForme.indexOf(f);
-		f.setStroke(Color.BLACK);
-		f.setStrokeWidth(2);
+		if (f instanceof Line) {// Si on a une ligne on redéfini le contour de ligne par sa couleur d'où l'utilisé du Fill pour la ligne
+			Paint c = f.getFill();
+			f.setStroke(c);
+			f.setStrokeWidth(3);
+		}
+		else {
+			f.setStroke(Color.BLACK);
+			f.setStrokeWidth(2);
+		}
 		listeForme.set(index, f);
 		
 	}
@@ -78,6 +86,7 @@ public class Model {
 		int index = listeForme.indexOf(f);
 		
 		if(f instanceof Rectangle) {
+			
 			/*double x  = ((Rectangle) f).getX();
 			double y =  ((Rectangle) f).getY();
 			double deltaX = xNew + x;
@@ -85,12 +94,18 @@ public class Model {
 			((Rectangle) f).setTranslateX(deltaX);
 			((Rectangle) f).setTranslateY(deltaY);*/
 			
-			((Rectangle) f).setX(xNew);
-			((Rectangle) f).setY(yNew);
+			double h = ((Rectangle) f).getHeight();
+			double l = ((Rectangle) f).getWidth();
+			((Rectangle) f).setX(xNew-l/2);
+			((Rectangle) f).setY(yNew-h/2);
+			
+			/*((Rectangle) f).setX((xNew));
+			((Rectangle) f).setY((yNew));*/
 		}
 		
 		if(f instanceof Ellipse) {
 			
+			// Autre methode
 			/*double x  = ((Ellipse) f).getCenterX();
 			double y =  ((Ellipse) f).getCenterY();
 			double deltaX = xNew - x;

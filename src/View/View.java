@@ -179,6 +179,7 @@ public class View
 	             			
 	             			controlleur.move(f, X, Y);
 	             			
+	             			// Autre Méthode 
 	             			/*f.setOnMouseDragged(deplace ->
 	            	        {
 	            	        	double xNew = deplace.getSceneX();

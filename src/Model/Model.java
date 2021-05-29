@@ -13,16 +13,21 @@ import javafx.scene.shape.Shape;
 
 public class Model {
 	private ArrayList<Shape> listeForme;
+	private ArrayList<Boolean> EnCours;
 	
 	public Model(){
 		listeForme = new ArrayList<Shape>();
+		EnCours = new ArrayList<Boolean>();
 		}
+
 	public void createRectangle(double x, double y, Color c) {
 		Rectangle r = new Rectangle(x,y,100,150);
 		r.setFill(c);
 		r.setStroke(Color.BLACK);
 		r.setStrokeWidth(2);
 		listeForme.add(r);
+		Boolean b = false;
+		EnCours.add(b);
 	}
 	
 	public void createEllipse(double x, double y, Color c) {
@@ -33,6 +38,8 @@ public class Model {
 		e.setStroke(Color.BLACK);
 		e.setStrokeWidth(2);
 		listeForme.add(e);
+		Boolean b = false;
+		EnCours.add(b);
 	}
 	
 	public void createLine(double x1, double y1, double x2, double y2, Color c) {
@@ -41,6 +48,8 @@ public class Model {
 		l.setStrokeWidth(3);
 		l.setStroke(c);
 		listeForme.add(l);
+		Boolean b = false;
+		EnCours.add(b);
 	}
 	public ArrayList<Shape> getListeForme() {
 		return listeForme;
@@ -81,6 +90,27 @@ public class Model {
 		listeForme.set(index, f);
 		
 	}
+	
+	
+	public void debut(Shape f) {
+		int index = listeForme.indexOf(f);
+		EnCours.set(index, true);
+	}
+	public void fin(Shape f) {
+		int index = listeForme.indexOf(f);
+		EnCours.set(index, false);
+	}
+	public Boolean getEnCours(Shape f) {
+		int index = listeForme.indexOf(f);
+		return EnCours.get(index);
+	}
+	
+	public void libere() {
+		for (Boolean b : EnCours) {
+			b = false;
+		}
+	}
+	
 	
 	public void move(Shape f, double xNew, double yNew) {
 		int index = listeForme.indexOf(f);
@@ -128,7 +158,9 @@ public class Model {
 	}
 	
 	public void delete(Shape f) {
+		EnCours.remove(listeForme.indexOf(f));
 		listeForme.remove(f);
+		
 	}
 	
 	public void clone(Shape f) {

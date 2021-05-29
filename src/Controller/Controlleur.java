@@ -55,4 +55,34 @@ public class Controlleur {
 	public void clone(Shape f) {
 		model.clone(f);
 	}
+	
+	public void debut(Shape f) {
+		model.debut(f);
+	}
+	public void fin(Shape f) {
+		model.fin(f);
+	}
+	public Boolean getEnCours(Shape f) {
+		return model.getEnCours(f);
+	}
+	
+	public void libere() {
+		model.libere();
+	}
+	
+	
+	public void draw(Shape f, Color c , double X, double Y) {
+		
+		if (model.getEnCours(f) == true) {
+		// On redéfini le couleur choisi 
+			setColor(f, c);
+			
+			// on définie le contour accentue
+			setContour(f);
+			
+			//on bouge la forme
+			
+			move(f, X, Y);
+		}
+	}
 }

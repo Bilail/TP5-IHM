@@ -152,6 +152,8 @@ public class View
             
         });
 		
+		
+		
 		//Si on click et glisse avec la souris 
 		ZoneDessin.setOnMouseDragged(event ->
 	        {
@@ -159,47 +161,50 @@ public class View
 	        	// On recupere les coordonnées de la souris  	             
 	             double X = event.getX();
 	             double Y = event.getY(); 
-	             
+	             Boolean selected;
 	                       
 	            //On récupère la valeur couleur sélectionné 
 	            Color color = ColorSelector.getValue();
 	               
 	             // On regarde sur quelle forme on est 
 	             ArrayList<Shape> listForme = controlleur.obtenirForme();
+
+	             
 	             
 	             // Si le bouton select est sélectionner 
 	             if(btnSelect.isSelected()) {
-	            	 Boolean selected = false;
-	            	 for (Shape f : listForme) {
-	            		 //On regarde quelle forme est sélectionné 
-	            		 if (f.contains(X,Y) && selected == false) {
-	            			 selected = true;
-	            			// On redéfini le couleur choisi 
-	             			controlleur.setColor(f, color);
-	             			
-	             			// on définie le contour accentue
-	             			controlleur.setContour(f);
-	             			
-	             			//on bouge la forme
-	             			
-	             			controlleur.move(f, X, Y);
-	             			
-	             			// Autre Méthode 
-	             			/*f.setOnMouseDragged(deplace ->
-	            	        {
-	            	        	double xNew = deplace.getSceneX();
-	            	        	double yNew = deplace.getSceneY();
-
-	            	        });*/
-	             			
-	            			 
-	            		 }
+	            	 
 	            		 
-	            	 }
-	            	selected = false;
+	            	 for (Shape f : listForme) {
+	            		 
+	            		 selected = controlleur.getEnCours(f);
+	            		 controlleur.debut(f);
+	            		 //On regarde quelle forme est sélectionné 
+	            		 if (f.contains(X,Y) && selected) {
+	            			 
+	            			 //ontrolleur.debut(f);
+	            				 for (Shape autre : listForme) {
+		            				  if (autre != f) {
+		            					  controlleur.fin(autre);
+		            				  }
+		            			  }
+	            		 	
+	            			  controlleur.draw(f,color,X,Y);  
+	            		 }
+	            			
+	            			 
+	             			/*ZoneDessin.setOnMouseExited(relache ->
+	             			{
+	             				controlleur.libere();
+	        	            	MAJ();
+	             			});*/
+	            		 } 
+	            	 controlleur.libere(); 
 	             }
+	             
 	             MAJ();
-	        });
+	             
+	        });  
 		
 		
 		
@@ -207,10 +212,12 @@ public class View
 	}
 	
 	public void MAJ() {
+		
 		ArrayList<Shape> L = controlleur.obtenirForme();
 		ZoneDessin.getChildren().clear();
 		ZoneDessin.getChildren().addAll(L);
+		}
 	}
 		
-}
+
 

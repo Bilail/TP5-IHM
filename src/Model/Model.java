@@ -45,7 +45,7 @@ public class Model {
 	public void createLine(double x1, double y1, double x2, double y2, Color c) {
 		Line l = new Line(x1,y1,x2,y2);
 		l.setFill(c);
-		l.setStrokeWidth(3);
+		l.setStrokeWidth(5);
 		l.setStroke(c);
 		listeForme.add(l);
 		Boolean b = false;
@@ -69,7 +69,7 @@ public class Model {
 			}
 		int index = listeForme.indexOf(f);
 		f.setStroke(Color.GREEN);
-		f.setStrokeWidth(5);
+		f.setStrokeWidth(6);
 		listeForme.set(index, f);
 		
 		
@@ -81,7 +81,7 @@ public class Model {
 		if (f instanceof Line) {// Si on a une ligne on redéfini le contour de ligne par sa couleur d'où l'utilisé du Fill pour la ligne
 			Paint c = f.getFill();
 			f.setStroke(c);
-			f.setStrokeWidth(3);
+			f.setStrokeWidth(5);
 		}
 		else {
 			f.setStroke(Color.BLACK);
@@ -151,7 +151,8 @@ public class Model {
 		if(f instanceof Line) {
 			((Line) f).setStartX(xNew);
 			((Line) f).setStartY(yNew);
-
+			((Line) f).setEndX(xNew+100);
+			((Line) f).setEndY(yNew+100);
 		}
 	
 		listeForme.set(index, f);

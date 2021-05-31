@@ -71,8 +71,7 @@ public class View
 	@FXML
 	public void initialize()
 	{
-		
-		// On désactive les boutons
+				// On désactive les boutons
 		btnDelete.setDisable(true);
 		btnClone.setDisable(true);
 		
@@ -108,7 +107,9 @@ public class View
          // Si on a selectionne le bouton Select
             if (btnSelect.isSelected() == true) {
             	
-            	
+            	// On désactive les boutons si on est en dehor
+            	btnDelete.setDisable(true);
+        		btnClone.setDisable(true);
         		
             	for (Shape f : listForme) {
             		// on déselectionne tout à chaque nouveau appuie sur le bouton 
@@ -122,13 +123,10 @@ public class View
                     	btnDelete.setDisable(false);
                 		btnClone.setDisable(false);
                 		
-            			// On redéfini le couleur choisi 
-            			controlleur.setColor(f, color);
-            			
-            			// on définie le contour accentue
-            			controlleur.setContour(f);
-            			
+            			// On selectionne la figure
+            			controlleur.selection(f, color);
             		
+            			
             			btnDelete.setOnAction(supr -> {
             				controlleur.delete(f);
             				 MAJ();
@@ -138,8 +136,10 @@ public class View
             				controlleur.clone(f);
             				 MAJ();
             					});
-            				
+            			
             				}
+            		
+            		
             			}
             		}
             // Quand on est plus sur la sélection on redesactive les boutons 
@@ -170,7 +170,6 @@ public class View
 	             ArrayList<Shape> listForme = controlleur.obtenirForme();
 
 	             
-	             
 	             // Si le bouton select est sélectionner 
 	             if(btnSelect.isSelected()) {
 	            	 
@@ -190,14 +189,8 @@ public class View
 		            			  }
 	            		 	
 	            			  controlleur.draw(f,color,X,Y);  
-	            		 }
-	            			
-	            			 
-	             			/*ZoneDessin.setOnMouseExited(relache ->
-	             			{
-	             				controlleur.libere();
-	        	            	MAJ();
-	             			});*/
+	            		 	}
+	            		
 	            		 } 
 	            	 controlleur.libere(); 
 	             }
@@ -205,18 +198,17 @@ public class View
 	             MAJ();
 	             
 	        });  
-		
-		
-		
-		
 	}
 	
+	
+	//Permet de mettre à jour la zone de dessin avec les modifications
 	public void MAJ() {
 		
 		ArrayList<Shape> L = controlleur.obtenirForme();
 		ZoneDessin.getChildren().clear();
 		ZoneDessin.getChildren().addAll(L);
 		}
+	
 	}
 		
 

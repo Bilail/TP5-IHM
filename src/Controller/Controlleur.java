@@ -70,15 +70,19 @@ public class Controlleur {
 		model.libere();
 	}
 	
+	public void selection(Shape f, Color c) {
+		// On redéfini le couleur choisi 
+		setColor(f, c);
+					
+		// on définie le contour accentue
+		setContour(f);
+		
+	}
 	
 	public void draw(Shape f, Color c , double X, double Y) {
 		
 		if (model.getEnCours(f) == true) {
-		// On redéfini le couleur choisi 
-			setColor(f, c);
-			
-			// on définie le contour accentue
-			setContour(f);
+			selection(f,c);
 			
 			//on bouge la forme
 			
